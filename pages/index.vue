@@ -1,11 +1,17 @@
 <template>
-  <div>Test</div>
+  <div class="container">Test</div>
 </template>
 
 <script>
-export default {
-  name: 'IndexPage',
-}
+  export default {
+    name: 'IndexPage',
+  };
 </script>
 
-<style scoped></style>
+<style lang="scss" scoped>
+  $red: #f00;
+
+  .container {
+    color: $red;
+  }
+</style>
