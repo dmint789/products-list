@@ -63,13 +63,13 @@
     resize: none;
   }
   input[type='submit'] {
-    @include round-border(15px);
+    @include round-border(1rem);
 
-    padding: 1rem;
+    padding: 1em;
     border-width: 0;
     background-color: $enabled-color;
     color: $enabled-text-color;
-    font-size: $form-font-size;
+    font-size: 1rem;
     font-family: $main-font;
     font-weight: bold;
 

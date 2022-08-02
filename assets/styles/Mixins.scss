@@ -6,7 +6,7 @@
   align-items: center;
 }
 
-@mixin round-border($radius: $radius) {
+@mixin round-border($radius: 0.4rem) {
   border-radius: $radius;
   -moz-border-radius: $radius;
   -webkit-border-radius: $radius;
@@ -17,7 +17,6 @@
 
   margin-bottom: 3vh;
   padding: 1.5vh;
-  box-sizing: border-box;
   border-width: 0;
   box-shadow: $input-shadow;
   font-size: $form-font-size;

@@ -2,8 +2,8 @@
   <div class="background">
     <div class="container">
       <h1 class="title">Добавление Товара</h1>
-      <div class="grid">
-        <Form />
+      <div class="sub-container">
+        <Form class="form" />
         <div class="items-list">
           <Item v-for="item in items" :key="item.id" :item="item" />
         </div>
@@ -48,23 +48,44 @@
 <style lang="scss" scoped>
   .container {
     overflow: hidden;
-    max-width: 1400px;
-    margin: 30px auto;
+    max-width: $container-width;
+    margin: 3vh auto;
   }
   .title {
-    margin: $column-gap;
+    margin: 1rem;
   }
-  .grid {
-    display: grid;
-    grid-template-columns: 25% 75%;
+  .sub-container {
+    display: flex;
+    align-items: flex-start;
+    margin: 0 1vw;
     padding: 1vh 0;
   }
+  .form {
+    flex: 1;
+    margin: 0 1vw 0 0;
+  }
   .items-list {
-    padding: 0 $column-gap;
+    flex: 3;
 
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(auto-fit, minmax($container-width / 5, 1fr));
+    grid-auto-rows: minmax(max-content, max-content);
     column-gap: $column-gap;
     row-gap: $row-gap;
+  }
+
+  @media (max-width: 550px) {
+    .container {
+      margin: 0;
+    }
+    .sub-container {
+      flex-direction: column;
+      align-items: stretch;
+      margin: 0 1vw;
+      padding: 0;
+    }
+    .form {
+      margin: 0 0 1vh 0;
+    }
   }
 </style>

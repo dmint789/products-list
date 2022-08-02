@@ -58,7 +58,7 @@
     box-shadow: $shadow;
   }
   .text-container {
-    padding: 0.6rem;
+    padding: 0.8rem;
   }
 
   #delete {

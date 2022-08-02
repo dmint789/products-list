@@ -41,6 +41,6 @@
     align-items: flex-start;
   }
   .required > label {
-    margin-right: 0.2rem;
+    margin-right: 0.2em;
   }
 </style>
