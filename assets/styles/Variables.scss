@@ -1,9 +1,15 @@
 $background-color: #f5f5f5;
 $foreground-color: white;
+$enabled-color: #7b7;
+$enabled-text-color: white;
+$disabled-color: #eee;
+$disabled-text-color: #999;
+
 $radius: 5px;
 $column-gap: 0.8vw;
 $row-gap: 0.8vh;
 $main-font: Arial, Helvetica, sans-serif;
+$form-font-size: 1.7vh;
 //       x, y, blur, spread, color
 $shadow: 3px 4px 8px 4px #eee;
 $input-shadow: 0 3px 5px 3px #eee;

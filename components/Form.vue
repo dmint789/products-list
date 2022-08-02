@@ -1,10 +1,8 @@
 <template>
-  <form>
-    <label for="title">Наименование товара</label>
-    <input
-      type="text"
-      id="title"
+  <form @submit="(e) => e.preventDefault()">
+    <FormInput
       name="title"
+      label="Наименование товара"
       placeholder="Введите наименование товара"
     />
     <label for="description">Описание товара</label>
@@ -14,55 +12,79 @@
       rows="5"
       placeholder="Введите описание товара"
     ></textarea>
-    <label for="url">Ссылка на изображение товара</label>
-    <input type="text" id="url" name="url" placeholder="Введите ссылку" />
-    <label for="price">Цена товара</label>
-    <input type="text" id="price" name="price" placeholder="Введите цену" />
-    <input type="submit" value="Добавить товар" />
+    <FormInput
+      name="url"
+      label="Ссылка на изображение товара"
+      placeholder="Введите ссылку"
+    />
+    <FormInput name="price" label="Цена товара" placeholder="Введите цену" />
+    <input
+      type="submit"
+      value="Добавить товар"
+      :disabled="submitDisabled"
+      :style="{ '--submit-scale': submitDisabled ? '' : 'scale(0.95)' }"
+      @click="test"
+    />
   </form>
 </template>
 
 <script>
   export default {
     name: 'Form',
+    computed: {
+      submitDisabled() {
+        return true;
+      },
+    },
+    methods: {
+      test() {
+        console.log('test');
+      },
+    },
   };
 </script>
 
 <style lang="scss" scoped>
-  @import '../assets/styles/Variables.scss';
-
-  $font-size: 1.7vh;
-
   form {
-    padding: 3vh;
-    border-radius: $radius;
-    -moz-border-radius: $radius;
-    -webkit-border-radius: $radius;
+    @include round-border;
+
+    padding: 1rem;
     box-shadow: $shadow;
     background-color: $foreground-color;
 
     display: flex;
     flex-direction: column;
   }
-  input,
+  label {
+    @include input-label;
+  }
   textarea {
-    margin-bottom: 3vh;
-    padding: 1.5vh;
+    @include text-input;
+    resize: none;
+  }
+  input[type='submit'] {
+    @include round-border(15px);
+
+    padding: 1rem;
     border-width: 0;
-    box-shadow: $input-shadow;
-    font-size: $font-size;
+    background-color: $enabled-color;
+    color: $enabled-text-color;
+    font-size: $form-font-size;
     font-family: $main-font;
+    font-weight: bold;
 
     &:focus {
       outline: none;
     }
-  }
-  textarea {
-    resize: none;
-  }
-  label {
-    margin-bottom: 1vh;
-    font-size: $font-size;
-    font-family: $main-font;
+    &:active {
+      transform: var(--submit-scale);
+    }
+    &:hover {
+      background-color: #9c9;
+    }
+    &:disabled {
+      background-color: $disabled-color;
+      color: $disabled-text-color;
+    }
   }
 </style>

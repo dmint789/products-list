@@ -1,0 +1,35 @@
+@import './Variables.scss';
+
+@mixin center-child {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@mixin round-border($radius: $radius) {
+  border-radius: $radius;
+  -moz-border-radius: $radius;
+  -webkit-border-radius: $radius;
+}
+
+@mixin text-input {
+  @include round-border;
+
+  margin-bottom: 3vh;
+  padding: 1.5vh;
+  box-sizing: border-box;
+  border-width: 0;
+  box-shadow: $input-shadow;
+  font-size: $form-font-size;
+  font-family: $main-font;
+
+  &:focus {
+    outline: none;
+  }
+}
+
+@mixin input-label {
+  margin-bottom: 1vh;
+  font-size: $form-font-size;
+  font-family: $main-font;
+}

@@ -21,7 +21,7 @@ export default {
   },
 
   // Global CSS: https://go.nuxtjs.dev/config-css
-  css: ['~/assets/styles/GlobalStyles.scss', '~/assets/styles/Variables.scss'],
+  css: ['~/assets/styles/GlobalStyles.scss'],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [],
@@ -30,11 +30,25 @@ export default {
   components: true,
 
   // Modules for dev and build (recommended): https://go.nuxtjs.dev/config-modules
-  buildModules: [],
+  buildModules: ['@nuxtjs/style-resources', '@nuxtjs/fontawesome'],
 
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [],
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {},
+
+  styleResources: {
+    scss: ['~/assets/styles/Variables.scss', '~/assets/styles/Mixins.scss'],
+  },
+
+  fontawesome: {
+    icons: {
+      solid: true,
+      regular: false,
+      light: false,
+      duotone: false,
+      brands: false,
+    },
+  },
 };

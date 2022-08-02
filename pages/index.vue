@@ -46,9 +46,6 @@
 </script>
 
 <style lang="scss" scoped>
-  @import '../assets/styles/Variables.scss';
-  @import '../assets/styles/GlobalStyles.scss';
-
   .container {
     overflow: hidden;
     max-width: 1400px;
