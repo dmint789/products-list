@@ -39,7 +39,11 @@ export default {
   build: {},
 
   styleResources: {
-    scss: ['~/assets/styles/Variables.scss', '~/assets/styles/Mixins.scss'],
+    scss: [
+      '~/assets/styles/Variables.scss',
+      '~/assets/styles/Mixins.scss',
+      '~/assets/styles/Transitions.scss',
+    ],
   },
 
   fontawesome: {

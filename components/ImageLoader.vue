@@ -4,6 +4,7 @@
       src="/placeholder.png"
       alt="Placeholder image"
       id="placeholder-image"
+      v-if="position === 'absolute'"
     />
     <img
       src=""
@@ -23,19 +24,19 @@
     },
     data() {
       return {
+        // This will be equal to 'absolute' until the main image is loaded, at which point it will be changed to 'relative'
         position: 'absolute',
       };
     },
     mounted() {
       // The following code will make it so that images are only loaded when the element is in the viewport
+      // and so that the placeholder is removed after the image is loaded
       const observer = new IntersectionObserver(([entry]) => {
         const img = this.$el.querySelector('#main-image');
-        const placeholder = this.$el.querySelector('#placeholder-image');
 
+        // Create an onload callback that will update the positioning of the main image when it is loaded
         img.onload = () => {
-          // Delete the previous value stored in onload, remove the placeholder object and update the position of the main image
           delete img.onload;
-          if (placeholder) placeholder.remove();
           this.position = 'relative';
         };
 

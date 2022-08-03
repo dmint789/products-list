@@ -1,0 +1,22 @@
+.items-move,
+.items-enter-active,
+.items-leave-active,
+.text-fade-enter-active,
+.text-fade-leave-active {
+  transition: all 0.5s ease;
+}
+// Take leaving item out of the layout flow
+.list-leave-active {
+  position: absolute;
+}
+
+.items-enter-from,
+.items-leave-to {
+  opacity: 0;
+  transform: translateY(-10vh);
+}
+
+.text-fade-enter-from,
+.text-fade-leave-to {
+  opacity: 0;
+}

@@ -17,7 +17,8 @@
 
   margin-bottom: 2vh;
   padding: 1.5vh;
-  border-width: 0;
+  // This isn't used until an error pops up
+  border: 0 solid $error-color;
   box-shadow: $input-shadow;
   font: $default-font;
 

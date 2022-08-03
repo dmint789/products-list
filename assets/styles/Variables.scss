@@ -3,6 +3,7 @@ $background-color: #f5f5f5;
 $foreground-color: white;
 $enabled-color: #7b7;
 $enabled-text-color: white;
+$focused-green-color: #9c9;
 $disabled-color: #eee;
 $disabled-text-color: #999;
 $error-color: darksalmon;
@@ -19,3 +20,4 @@ $row-gap: 0.8vh;
 //       x, y, blur, spread, color
 $shadow: 3px 4px 8px 4px rgba(0, 0, 0, 0.05);
 $input-shadow: 0 3px 5px 3px rgba(0, 0, 0, 0.05);
+$border-width: 3px;

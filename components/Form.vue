@@ -84,12 +84,13 @@
 
     &:focus {
       outline: none;
+      background-color: $focused-green-color;
     }
     &:active {
       transform: var(--submit-scale);
     }
     &:hover {
-      background-color: #9c9;
+      background-color: $focused-green-color;
     }
     &:disabled {
       background-color: $disabled-color;

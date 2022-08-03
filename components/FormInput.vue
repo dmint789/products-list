@@ -18,7 +18,9 @@
       @focusout="getError"
       :class="error && required ? 'error-border' : ''"
     />
-    <p class="error" v-if="error && required">{{ error }}</p>
+    <Transition name="text-fade" appear>
+      <p class="error" v-if="error && required">{{ error }}</p>
+    </Transition>
   </div>
 </template>
 
@@ -64,6 +66,7 @@
   input {
     @include text-input;
 
+    transition: border-width 0.4s ease;
     width: 100%;
   }
 
@@ -82,13 +85,12 @@
     color: $error-color;
   }
   .error-border {
-    border-width: 2px;
-    border-style: solid;
-    border-color: $error-color;
+    border-width: $border-width;
   }
   .error {
     margin-bottom: 1.2rem;
-    font-size: 1rem;
+    font: $default-font;
+    font-weight: bold;
     color: $error-color;
   }
 </style>

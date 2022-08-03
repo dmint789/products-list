@@ -16,9 +16,9 @@
       </div>
       <div class="sub-container">
         <Form class="form" />
-        <div class="items-list">
+        <TransitionGroup name="items" tag="div" class="items-list">
           <Item v-for="item in items" :key="item.id" :item="item" />
-        </div>
+        </TransitionGroup>
       </div>
     </div>
   </div>
@@ -36,7 +36,7 @@
       ...mapActions(['changeItemSorting']),
     },
     beforeCreate() {
-      //if (localStorage.getItem('store')) this.$store.commit('reloadState');
+      if (localStorage.getItem('store')) this.$store.commit('reloadState');
     },
   };
 </script>
