@@ -19,8 +19,7 @@
   padding: 1.5vh;
   border-width: 0;
   box-shadow: $input-shadow;
-  font-size: $form-font-size;
-  font-family: $main-font;
+  font: $default-font;
 
   &:focus {
     outline: none;
@@ -29,6 +28,5 @@
 
 @mixin input-label {
   margin-bottom: 1vh;
-  font-size: $form-font-size;
-  font-family: $main-font;
+  font: $default-font;
 }

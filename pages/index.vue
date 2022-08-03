@@ -1,7 +1,19 @@
 <template>
   <div class="background">
     <div class="container">
-      <h1 class="title">Добавление Товара</h1>
+      <div class="top-row">
+        <h1>Добавление Товара</h1>
+        <select
+          name="sorting"
+          id="sorting"
+          :value="sorting"
+          @change="(e) => changeItemSorting(e.target.value)"
+        >
+          <option value="name">По наименованию</option>
+          <option value="pricemin">По цене от меньшего к большему</option>
+          <option value="pricemax">По цене от большего к меньшему</option>
+        </select>
+      </div>
       <div class="sub-container">
         <Form class="form" />
         <div class="items-list">
@@ -13,24 +25,43 @@
 </template>
 
 <script>
-  import { mapState, mapMutations } from 'vuex';
+  import { mapState, mapActions } from 'vuex';
 
   export default {
     name: 'IndexPage',
     computed: {
-      ...mapState(['items']),
+      ...mapState(['items', 'sorting']),
+    },
+    methods: {
+      ...mapActions(['changeItemSorting']),
+    },
+    beforeCreate() {
+      //if (localStorage.getItem('store')) this.$store.commit('reloadState');
     },
   };
 </script>
 
 <style lang="scss" scoped>
+  select {
+    @include round-border;
+
+    padding: 0 0.5rem;
+    border-width: 0;
+    box-shadow: $input-shadow;
+    background-color: $foreground-color;
+    color: $dim-text-color;
+    font: $default-font;
+  }
+
   .container {
     overflow: hidden;
     max-width: $container-width;
     margin: 3vh auto;
   }
-  .title {
-    margin: 1rem;
+  .top-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 1rem;
   }
   .sub-container {
     display: flex;

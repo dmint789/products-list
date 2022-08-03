@@ -1,3 +1,4 @@
+// Colors
 $background-color: #f5f5f5;
 $foreground-color: white;
 $enabled-color: #7b7;
@@ -5,12 +6,16 @@ $enabled-text-color: white;
 $disabled-color: #eee;
 $disabled-text-color: #999;
 $error-color: darksalmon;
+$dim-text-color: #666;
 
+// Fonts
+$main-font-family: Arial, Helvetica, sans-serif;
+$default-font: 1rem $main-font-family;
+
+// Other
 $container-width: 1400px;
 $column-gap: 0.8vw;
 $row-gap: 0.8vh;
-$main-font: Arial, Helvetica, sans-serif;
-$form-font-size: 1.7vh;
 //       x, y, blur, spread, color
-$shadow: 3px 4px 8px 4px #eee;
-$input-shadow: 0 3px 5px 3px #eee;
+$shadow: 3px 4px 8px 4px rgba(0, 0, 0, 0.05);
+$input-shadow: 0 3px 5px 3px rgba(0, 0, 0, 0.05);

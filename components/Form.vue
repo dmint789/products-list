@@ -4,6 +4,7 @@
       name="title"
       label="Наименование товара"
       placeholder="Введите наименование товара"
+      required
     />
     <label for="description">Описание товара</label>
     <textarea
@@ -20,8 +21,14 @@
       name="url"
       label="Ссылка на изображение товара"
       placeholder="Введите ссылку"
+      required
     />
-    <FormInput name="price" label="Цена товара" placeholder="Введите цену" />
+    <FormInput
+      name="price"
+      label="Цена товара"
+      placeholder="Введите цену"
+      required
+    />
     <input
       type="submit"
       value="Добавить товар"
@@ -72,8 +79,7 @@
     border-width: 0;
     background-color: $enabled-color;
     color: $enabled-text-color;
-    font-size: 1rem;
-    font-family: $main-font;
+    font: $default-font;
     font-weight: bold;
 
     &:focus {

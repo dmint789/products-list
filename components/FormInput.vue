@@ -1,8 +1,12 @@
 <template>
   <div class="input-container">
-    <span class="required">
+    <span class="label-container">
       <label :for="name">{{ label }}</label>
-      <font-awesome-icon icon="fa-solid fa-circle" class="icon" />
+      <font-awesome-icon
+        v-if="required"
+        icon="fa-solid fa-circle"
+        class="icon"
+      />
     </span>
     <input
       type="text"
@@ -11,10 +15,10 @@
       :placeholder="placeholder"
       :value="value"
       @input="(e) => onInput(e.target.value)"
-      @focusout="() => (error = getInputError(name))"
-      :class="error ? 'error-border' : ''"
+      @focusout="getError"
+      :class="error && required ? 'error-border' : ''"
     />
-    <p class="error" v-if="error">{{ error }}</p>
+    <p class="error" v-if="error && required">{{ error }}</p>
   </div>
 </template>
 
@@ -27,6 +31,7 @@
       name: String,
       label: String,
       placeholder: String,
+      required: Boolean,
     },
     data() {
       return {
@@ -42,7 +47,10 @@
     methods: {
       onInput(newInput) {
         this.changeField({ field: this.name, value: newInput });
-        this.error = this.getInputError(this.name);
+        this.getError();
+      },
+      getError() {
+        if (this.required) this.error = this.getInputError(this.name);
       },
       ...mapMutations(['changeField']),
     },
@@ -62,11 +70,11 @@
   .input-container {
     width: 100%;
   }
-  .required {
+  .label-container {
     display: flex;
     align-items: flex-start;
   }
-  .required > label {
+  .label-container > label {
     margin-right: 0.2em;
   }
   .icon {

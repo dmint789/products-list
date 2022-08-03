@@ -1,27 +1,45 @@
 export const state = () => ({
   items: [
     {
+      id: 0,
+      title: 'ASUS ноутбук',
+      description:
+        'Быстрый ноутбук марки ASUS. В коробке и с полной комплектацией.',
+      url: 'https://www.bhphotovideo.com/images/images2500x2500/asus_gl503vd_db74_i7_7700hq_2_8ghz_16gb_1tb_1356938.jpg',
+      price: 53999,
+    },
+    {
       id: 1,
-      title: 'Сумка',
-      description: 'Красивая сумка',
-      price: '10000',
-      url: 'https://www.bragmybag.com/wp-content/uploads/2015/02/Loewe-Puzzle-Bag-blue.jpg',
+      title: 'iPhone',
+      description:
+        'Крутой телефон с самой новой версией iOS. Коробки, к сожалению, нет, но устройство в отличном состоянии. Зарядка в комплекте.',
+      url: 'https://cell4pets.com/wp-content/uploads/2020/11/20201111_161248_resized.jpg',
+      price: 49000,
     },
     {
       id: 2,
       title: 'Кошка',
-      description: 'Милая кошка',
-      price: '100',
+      description: 'Милая кошка. Очень послушная и смешная.',
       url: 'https://3.bp.blogspot.com/--3DlxklEVeQ/UDB3EBzbhpI/AAAAAAAAPfg/VGdEr7cTiPg/s1600/Cute+Kitten+6.jpg',
+      price: 1000,
     },
-    { id: 3, title: '', description: '', price: '', url: '' },
-    { id: 4, title: '', description: '', price: '', url: '' },
-    { id: 5, title: '', description: '', price: '', url: '' },
-    { id: 6, title: '', description: '', price: '', url: '' },
-    { id: 7, title: '', description: '', price: '', url: '' },
-    { id: 8, title: '', description: '', price: '', url: '' },
-    { id: 9, title: '', description: '', price: '', url: '' },
+    {
+      id: 3,
+      title: 'Кубик Рубика 3х3',
+      description: '',
+      url: "https://3.bp.blogspot.com/-GSgR09KVGns/U8Gb6tFhP0I/AAAAAAAABFI/pY6o4leFvdQ/s1600/Rubik's+Cube+scrambled.jpg",
+      price: 1490,
+    },
+    {
+      id: 4,
+      title: 'Сумка',
+      description: 'Красивая сумка',
+      url: 'https://www.bragmybag.com/wp-content/uploads/2015/02/Loewe-Puzzle-Bag-blue.jpg',
+      price: 10000,
+    },
   ],
+  nextId: 5,
+  sorting: 'name',
   title: '',
   description: '',
   url: '',
@@ -51,24 +69,64 @@ export const getters = {
 };
 
 export const mutations = {
-  addItem: (state) => {
-    let price = '';
-    for (let i = state.price.length - 1; i >= 0; i--) {
-      if ((state.price.length - i - 1) % 3 === 0 && price.length > 0)
-        price = ' ' + price;
-      price = state.price[i] + price;
-    }
+  reloadState: (state) => {
+    let tempState = JSON.parse(localStorage.getItem('store'));
 
+    tempState.title = '';
+    tempState.description = '';
+    tempState.url = '';
+    tempState.price = '';
+
+    Object.assign(state, tempState);
+  },
+  addItem: (state) => {
     state.items.push({
-      id: state.items.length + 1,
+      id: state.nextId,
       title: state.title,
       description: state.description,
       url: state.url,
-      price: price,
+      price: Number(state.price),
     });
+    // No need to update local storage, because it will be updated with the nextId mutation
   },
   deleteItem: (state, id) => {
     state.items = state.items.filter((i) => i.id !== id);
+    localStorage.setItem('store', JSON.stringify(state));
+  },
+  sortItems: (state) => {
+    let sortFunc;
+
+    switch (state.sorting) {
+      case 'name':
+        sortFunc = (a, b) => {
+          if (a.title < b.title) return -1;
+          if (a.title > b.title) return 1;
+          return 0;
+        };
+        break;
+      case 'pricemin':
+        sortFunc = (a, b) => {
+          if (a.price < b.price) return -1;
+          if (a.price > b.price) return 1;
+          return 0;
+        };
+        break;
+      case 'pricemax':
+        sortFunc = (a, b) => {
+          if (a.price > b.price) return -1;
+          if (a.price < b.price) return 1;
+          return 0;
+        };
+        break;
+    }
+
+    state.items = state.items.sort(sortFunc);
+
+    localStorage.setItem('store', JSON.stringify(state));
+  },
+  incrementNextId: (state) => {
+    state.nextId = state.nextId + 1;
+    localStorage.setItem('store', JSON.stringify(state));
   },
   changeField: (state, { field, value }) => {
     state[field] = value;
@@ -78,10 +136,16 @@ export const mutations = {
 export const actions = {
   addNewItem({ commit }) {
     commit('addItem');
+    commit('incrementNextId');
+    commit('sortItems');
     commit('changeField', { field: 'title', value: '' });
     commit('changeField', { field: 'description', value: '' });
     commit('changeField', { field: 'url', value: '' });
     commit('changeField', { field: 'price', value: '' });
+  },
+  changeItemSorting({ commit }, sorting) {
+    commit('changeField', { field: 'sorting', value: sorting });
+    commit('sortItems');
   },
 };
 
