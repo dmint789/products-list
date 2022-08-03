@@ -3,11 +3,16 @@
     <div @mouseover="hover = true" @mouseleave="hover = false" class="item">
       <img :src="item.url" alt="Item image" />
       <div class="text-container">
-        <h2>{{ item.name }}</h2>
+        <h2>{{ item.title }}</h2>
         <p>{{ item.description }}</p>
         <h4>{{ item.price }} руб.</h4>
       </div>
-      <button type="button" id="delete" v-if="hover" @click="onPress">
+      <button
+        type="button"
+        id="delete"
+        v-if="hover"
+        @click="() => deleteItem(item.id)"
+      >
         <font-awesome-icon
           icon="fa-solid fa-trash-can"
           style="color: white; width: 60%; height: 60%"
@@ -18,6 +23,8 @@
 </template>
 
 <script>
+  import { mapMutations } from 'vuex';
+
   export default {
     name: 'Item',
     props: {
@@ -29,9 +36,7 @@
       };
     },
     methods: {
-      onPress() {
-        console.log('test');
-      },
+      ...mapMutations(['deleteItem']),
     },
   };
 </script>
@@ -61,6 +66,13 @@
     padding: 0.8rem;
   }
 
+  #title {
+    font-weight: bold;
+    font-size: 1.5rem;
+  }
+  #price {
+    font-weight: bold;
+  }
   #delete {
     @include center-child;
     @include round-border;

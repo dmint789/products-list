@@ -1,5 +1,5 @@
 <template>
-  <form @submit="(e) => e.preventDefault()">
+  <form @submit.prevent="addNewItem">
     <FormInput
       name="title"
       label="Наименование товара"
@@ -11,6 +11,10 @@
       name="description"
       rows="5"
       placeholder="Введите описание товара"
+      :value="description"
+      @input="
+        (e) => changeField({ field: 'description', value: e.target.value })
+      "
     ></textarea>
     <FormInput
       name="url"
@@ -21,25 +25,24 @@
     <input
       type="submit"
       value="Добавить товар"
-      :disabled="submitDisabled"
-      :style="{ '--submit-scale': submitDisabled ? '' : 'scale(0.95)' }"
-      @click="test"
+      :disabled="!isValidItem()"
+      :style="{ '--submit-scale': isValidItem() ? 'scale(0.95)' : '' }"
     />
   </form>
 </template>
 
 <script>
+  import { mapState, mapGetters, mapMutations, mapActions } from 'vuex';
+
   export default {
     name: 'Form',
     computed: {
-      submitDisabled() {
-        return true;
-      },
+      ...mapState(['description']),
+      ...mapGetters(['isValidItem']),
     },
     methods: {
-      test() {
-        console.log('test');
-      },
+      ...mapMutations(['changeField']),
+      ...mapActions(['addNewItem']),
     },
   };
 </script>

@@ -13,34 +13,12 @@
 </template>
 
 <script>
+  import { mapState, mapMutations } from 'vuex';
+
   export default {
     name: 'IndexPage',
-    data() {
-      return {
-        items: [
-          {
-            id: 1,
-            name: 'Сумка',
-            description: 'Красивая сумка',
-            price: '10000',
-            url: 'https://www.bragmybag.com/wp-content/uploads/2015/02/Loewe-Puzzle-Bag-blue.jpg',
-          },
-          {
-            id: 2,
-            name: 'Кошка',
-            description: 'Милая кошка',
-            price: '100',
-            url: 'https://3.bp.blogspot.com/--3DlxklEVeQ/UDB3EBzbhpI/AAAAAAAAPfg/VGdEr7cTiPg/s1600/Cute+Kitten+6.jpg',
-          },
-          { id: 3, name: '', description: '', price: '', url: '' },
-          { id: 4, name: '', description: '', price: '', url: '' },
-          { id: 5, name: '', description: '', price: '', url: '' },
-          { id: 6, name: '', description: '', price: '', url: '' },
-          { id: 7, name: '', description: '', price: '', url: '' },
-          { id: 8, name: '', description: '', price: '', url: '' },
-          { id: 9, name: '', description: '', price: '', url: '' },
-        ],
-      };
+    computed: {
+      ...mapState(['items']),
     },
   };
 </script>

@@ -15,7 +15,7 @@
 @mixin text-input {
   @include round-border;
 
-  margin-bottom: 3vh;
+  margin-bottom: 2vh;
   padding: 1.5vh;
   border-width: 0;
   box-shadow: $input-shadow;
